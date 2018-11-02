@@ -1,0 +1,17 @@
+app:
+  image: node:latest
+  volumes:
+   - ./app:/app
+  links:
+   - neo4j
+  ports:
+   - "3080:8080"
+  working_dir: /app
+  entrypoint: node app.js
+
+neo4j:
+  image: neo4j:3.0
+  ports:
+   - "7474:7474"
+  volumes:
+   - ./db/dbms:/data/dbms
